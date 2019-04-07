@@ -1,0 +1,74 @@
+<div class="container-wrapper container d-flex justify-content-center align-items-center  trial-block">
+  <div class="form-wrapper text-center">
+    <h2 class="text-center">הרשמה</h2>
+    <form dir="rtl" [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="name-wrapper d-flex justify-content-between">
+        <div class="form-group first-name">
+          <input
+            type="text"
+            formControlName="FirstName"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }"
+            placeholder="שם פרטי"
+          />
+          <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+            <div *ngIf="f.FirstName.errors.required">שדה חובה</div>
+          </div>
+        </div>
+        <div class="form-group last-name">
+          <input
+            type="text"
+            formControlName="LastName"
+            class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }"
+            placeholder="שם משפחה"
+          />
+          <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+            <div *ngIf="f.LastName.errors.required">שדה חובה</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          formControlName="Email"
+          class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.Email.errors }"
+          placeholder="דוא&quot;ל"
+          autocomplete="current-email"
+        />
+        <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+          <div *ngIf="f.Email.errors.required">שדה חובה</div>
+          <div *ngIf="f.Email.errors.email">כתובת הדוא"ל שהוזנה אינה תקינה.</div>
+        </div>
+      </div>
+
+      <div class="">
+        <div class=" rtl checkbox custom-control custom-checkbox mb-4  terms">
+          <input type="checkbox" formControlName="isReadTerms" class="custom-control-input" id="isReadTerms" />
+          <label class="custom-control-label cursor" for="isReadTerms"> </label>
+          <span class="mr-2 cursor" (click)="goTerms()">
+            קראתי את התקנון ואני מבין שתכני האתר נקבעים בלעדית על ידי משתמשי האתר, ואין למנהלי האתר אחריות עליהם,
+            ושהמידע שמופיע באתר אינו מהווה ייעוץ משפטי ואין להסתמך עליו ככזה</span
+          >
+        </div>
+      </div>
+      <div class="">
+        <div class=" rtl checkbox custom-control custom-checkbox mb-4">
+          <input
+            type="checkbox"
+            formControlName="isMarketingSubscribe"
+            class="custom-control-input"
+            id="isMarketingSubscribe"
+          />
+          <label class="custom-control-label" for="isMarketingSubscribe">אני מאשר/ת לשלוח אליי הודעות אימייל ועדכונים על שאלות חדשות </label>
+        </div>
+      </div>
+      <button type="submit" [disabled]="loading" class="btn btn-primary">ליצירת חשבון</button>
+    </form>
+    <img
+      *ngIf="loading"
+      src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+    />
+  </div>
+</div>

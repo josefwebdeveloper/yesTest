@@ -1,0 +1,146 @@
+a.active {
+  border-bottom: 3px solid gold;
+}
+.spinner--wrapper{
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  .spinner{
+    margin-top: 100px;
+    color: green;
+    z-index: 10000;
+
+  }
+}
+
+.main-main-wrapper {
+  height: calc(100vh - 105px) !important;
+}
+
+.bg-primary {
+  background-color: #f1f1f1 !important;
+}
+
+#sidebar-container {
+  min-height: 100vh;
+  background-color: #f1f1f1 !important;
+  /* padding: 0; */
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-nav a {
+  color: rgba(51, 51, 51, 255) !important;
+  font-size: 18px;
+}
+
+.logo-main-image {
+  margin-left: 16%;
+  width: auto;
+  height: 80px;
+}
+.button-burger{
+  margin-right: 4%;
+}
+
+/* Sidebar sizes when expanded and expanded */
+
+.sidebar-expanded {
+  /* width: 230px; */
+}
+
+.sidebar-collapsed {
+  /* width: 60px; */
+}
+
+/* Menu item*/
+
+#sidebar-container .list-group a {
+  height: 50px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* Submenu item*/
+
+#sidebar-container .list-group .sidebar-submenu a {
+  height: 45px;
+  padding-left: 30px;
+}
+
+.sidebar-submenu {
+  font-size: 0.9rem;
+}
+
+/* Separators */
+
+.sidebar-separator-title {
+  background-color: #f1f1f1 !important;
+  height: 35px;
+}
+
+.sidebar-separator {
+  background-color: #f1f1f1 !important;
+  height: 25px;
+}
+
+.logo-separator {
+  background-color: #f1f1f1 !important;
+  height: 60px;
+}
+
+.list-group-item {
+  background-color: #f1f1f1 !important;
+  border: none !important;
+}
+
+.list-group-item span {
+  color: rgba(51, 51, 51, 255) !important;
+  font-size: 18px;
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: lightgrey;
+  background-color: lightgrey;
+}
+
+hr {
+  border-top: 1px solid rgba(0, 0, 0, .1);
+  margin-top: 0rem;
+}
+
+.login-special {
+  font-size: 12px;
+  /* background-color: lightgrey; */
+  /* border-radius: 0 0 0 20px; */
+  /* margin-bottom: 60px; */
+  position: fixed;
+  top: 5px;
+  /* right: 0; */
+  left: 50%;
+  /* padding: 5px; */
+}
+.center-login{
+  position: relative; 
+  left: -50%;
+}
+
+.wrapper-question {
+  display: flex;
+  align-items: center;
+  /* position: absolute; */
+  background-color: #f1f1f1;
+  border-radius: 1.25rem;
+  height: 78px;
+  width: 310px;
+}
+
+.navbar {
+  padding: 0 !important;
+}

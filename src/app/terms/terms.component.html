@@ -1,0 +1,28 @@
+<header class="masthead">
+  <!-- <div class="overlay"></div> -->
+  <!-- <div class="container"> -->
+  <!-- <div class="row"> -->
+  <!--<button class="ml-2" mat-raised-button [routerLink]="['/main']" routerLinkActive="active">Back</button>-->
+  <button mat-button [routerLink]="['/main']" routerLinkActive="active">
+    <img class="arrow-icon-left" src="/assets/icons/arrow-left-green.png" alt="arrow-icon"/>
+  </button>
+  <!-- <div class="col-lg-8 col-md-10 mx-auto"> -->
+  <div class="page-heading">
+    <h1>Terms and Conditions</h1>
+    <span class="subheading"></span>
+
+
+  </div>
+  <!--<div></div>-->
+</header>
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      <!-- <p *ngIf="terms"  >{{terms.text}}</p> -->
+      <div dir="rtl" *ngIf="terms" class="test" [innerHTML]="terms.text"></div>
+    </div>
+  </div>
+</div>
+
+<hr/>

@@ -1,0 +1,310 @@
+<div class="main-wrapper">
+  <div class="container-oposite-wrapper">
+    <!-- <img *ngIf="!staticDataToShowFix[0] && !staticDataToShow" src='assets/images/copper-loader.gif' style="display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100px;" /> -->
+
+    <div class="container-opposite">
+      <ul *ngIf="!adminArea" class="list-group container-groups">
+        <li class=" list-group-item-top-menu d-flex justify-content-between align-items-center">
+          <!-- <li class="user-menu"> -->
+          <div class="ml-1">{{ channel?.countusers }} Group Members</div>
+
+          <button [disabled]="!isAdmin" (click)=adminAreaTrigger() class="button" mat-icon-button color="primary">
+            <mat-icon [ngClass]="{ add: isAdmin, 'add-disabled': !isAdmin }" aria-label="">add</mat-icon>
+            {{ edit }}
+          </button>
+
+        </li>
+
+        <li
+          *ngFor="let user of channel?.userslist.value.data"
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          <a class="d-flex" href="javascript:void(0);">
+
+            <img
+              alt="group logo"
+              src="/assets/icons/icon_conversation 1_1.png"
+              class=" border-0 ml-1 mr-3 list-thumbnail align-self-center xsmall"
+            />
+
+          </a>
+          <div class="d-flex flex-grow-1 min-width-zero" [routerLink]="['/main']" routerLinkActive="active">
+            <div
+              class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero"
+            >
+              <div class="min-width-zero">
+                <!-- <a href="#"> -->
+                <p class="mb-0 truncate font-weight-semibold">
+                  {{ user?.attributes.displayfirstname }} {{ user?.attributes.displaylastname }}
+                </p>
+                <p class="mb-0 truncate">
+                  <img class="icon-small-medal" src="/assets/icons/medal.png" alt="arrow-icon"/><span
+                  class="text-icons mr-2 mr-1"
+                >{{ user?.attributes.points}}</span
+                >
+                  <img class="icon-small-user" src="/assets/icons/time.png" alt="time-icon"/><span
+                  class="text-icons-time mr-2 ml-2"
+                >{{ user?.attributes.avaragetime }}</span
+                >
+                </p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <span *ngIf="user?.admin" class="admin">admin</span>
+            <!-- <img class="arrow-icon"src="/assets/icons/arrow_right_grey.png" alt="arrow-icon"> -->
+          </div>
+        </li>
+
+        <li class=" list-group-item-top-menu d-flex justify-content-between align-items-center"></li>
+        <!-- </ul> -->
+        <!--*ngIf="channel?.userslist.value.meta.totalitems>10"-->
+        <li *ngIf="channel"
+
+          class="list-group-item container-groups d-flex justify-content-center align-items-center"
+        >
+          <div class="d-flex justify-content-between align-items-center "
+               [routerLink]="['/settings',channel.id,'users']" routerLinkActive="active">
+            <div class="   d-flex justify-content-center align-items-center   ">
+              <div class="show-more-user">
+                <!-- <a href="#"> -->
+                <!--<div class="d-flex align-items-center">-->
+                <!--<img class="close-icon" src="/assets/icons/close_red.png" alt="close-icon"/>-->
+                <!--</div>-->
+
+                <p class=" btn btn-outline-light mb-0 red font-weight-semibold">Show More Users</p>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li
+          *ngIf="!adminArea"
+          class="list-group-item container-groups d-flex justify-content-center align-items-center"
+        >
+          <div class="d-flex justify-content-center align-items-center" [routerLink]="['/main']"
+               routerLinkActive="active">
+            <div class="m-2 pl-0 align-self-center d-flex   justify-content-center "
+            >
+              <!--<div class="exit-icon-wrapper">-->
+              <!-- <a href="#"> -->
+              <div class="d-flex align-items-center ">
+                <img class="close-icon" src="/assets/icons/close_red.png" alt="close-icon"/>
+              </div>
+
+              <div class="btn btn-outline-light mb-0 red font-weight-semibold">Exit Conversaton</div>
+              <!--</div>-->
+            </div>
+          </div>
+        </li>
+        <li
+          *ngIf="isAdmin && !adminArea"
+          (click)="deleteChannel(channel.id)"
+          class="list-group-item container-groups d-flex justify-content-center align-items-center"
+        >
+          <div class="m-2 pl-0  d-flex align-items-center  justify-content-center ">
+            <div class="exit-icon-wrapper">
+              <div class="d-flex align-items-center">
+                <img class="close-icon" src="/assets/icons/garbage_red.png" alt="close-icon"/>
+              </div>
+
+              <p class="mb-0 red font-weight-semibold">Delete Conversaton</p>
+            </div>
+          </div>
+          <div class="admin--container"><span *ngIf="isAdmin" class="admin">admin</span></div>
+        </li>
+      </ul>
+      <!-- Admin Area -->
+
+      <ul *ngIf="adminArea && isAdmin" class="list-group container-groups">
+        <!-- <li class="list-group-item container-groups d-flex justify-content-between align-items-center">
+          <div class="d-flex flex-grow-1 min-width-zero" [routerLink]="['/main']" routerLinkActive="active">
+            <div class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero">
+              <div class="exit-icon-wrapper">
+                <div (click)="adminAreaTrigger()" class="d-flex align-items-center">
+                  <img class="icon-group-admin" src="/assets/images/05-01.png" alt="group-icon" />
+                </div>
+
+                <p class="mb-0 font-weight-semibold ">Share Link By Email</p>
+              </div>
+            </div>
+          </div>
+          <div></div>
+        </li> -->
+        <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+          <li class="list-group-item container-groups d-flex justify-content-between align-items-center">
+            <div
+              class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero"
+            >
+              <div class="exit-icon-wrapper">
+                <div class="d-flex align-items-center">
+                  <img class="icon-group-admin" src="/assets/icons/icon_conversation 1_1.png" alt="group-icon"/>
+                </div>
+
+                <p *ngIf="!formArea" (click)="formArea = !formArea" class="mb-0 font-weight-semibold ">
+                  Add a User
+                </p>
+                <!-- placeholder="מספר טלפון נייד" -->
+                <!--[(ngModel)]="phone" (blur)="phone(phone)"-->
+                <div class="">
+                  <input
+                    *ngIf="formArea"
+                    type="phone"
+                    formControlName="Phone"
+                    (input)="onPhoneInput($event.target.value)"
+                    [ngClass]="{ 'is-invalid': submitted && f.Phone.errors }"
+                    autocomplete="phone"
+                    maxlength="10"
+                    class="form-control flex-grow-1"
+                    placeholder="Phone number(10 digits)"
+
+                  />
+                  <div *ngIf="submitted && f.Phone.errors" class="invalid-feedback">
+                    <div *ngIf="f.Phone.errors.minlength || f.Phone.errors.maxlength">length 10-15 digits</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="list-group-item container-groups d-flex justify-content-center align-items-center">
+            <div class="d-flex flex-grow-1 min-width-zero justify-content-center" routerLinkActive="active">
+              <div
+                class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-center min-width-zero"
+              >
+                <div class="exit-icon-wrapper justify-content-center">
+                  <!-- <a href="#"> -->
+                  <!-- <div class="d-flex align-items-center">
+                  <img class="icon-group-admin" src="/assets/images/05-01.png" alt="group-icon" />
+                </div> -->
+
+                  <button *ngIf="showButtonAdd" disableRipple mat-icon-button color="">
+                    <mat-icon class="add-icon" aria-label="add">add</mat-icon>
+                  </button>
+                  <!-- <p class="mb-0 font-weight-semibold ">Share Link By Email</p> -->
+                </div>
+              </div>
+            </div>
+            <!-- <div></div> -->
+          </li>
+        </form>
+      </ul>
+      <!--  End Admin Aria-->
+      <!--  -->
+      <!-- <div *ngFor="let item of staticDataToShow; let i = index" class="container-card-wrapper ">
+          <div class="container-card-wrapper-image animated zoomInUp delay-1s" [ngClass]="setClassTop">
+
+            <div class="wrapper-question" [ngStyle]="{'background-color':item.color}">
+              <div class="text-card">{{item.attributes.text}}</div>
+            </div>
+            <div class="wrapper-question-fake">
+
+            </div>
+
+
+            <div class="special-button">
+              <img class="" hidefocus="true" class="img-fluid " src="{{item.imgUrl}}" alt="{{item.imgUrl}}" width="100"
+                height="80" [attr.usemap]="'#ask' + item.answerId" />
+
+              <map name="ask{{item.answerId}}">
+                <area shape="circle" coords="73,47,22" alt="" (click)="chooseUp('S',item.answerId,item.status)">
+                <area shape="circle" coords="49,72,22" alt="" (click)="chooseUp('N',item.answerId,item.status)">
+                <area shape="circle" coords="24,48,22" alt="" (click)="chooseUp('confirm',item.answerId,item.status)">
+                <area shape="circle" coords="48,23,22" alt="" (click)="chooseUp('Y',item.answerId,item.status)">
+              </map>
+            </div>
+          </div>
+       
+      </div> -->
+    </div>
+  </div>
+  <div *ngIf="test">
+    <div class="fixed-bottom-container" *ngIf="staticDataToShowFix[0]">
+      <div class="line-main-wrapper">
+        <hr class="hr_bottom"/>
+        <div class="text-wrapper">New Question</div>
+        <hr class="hr_bottom"/>
+      </div>
+      <div class="wrapper-fix-bottom">
+        <div *ngIf="isShow" class=" container-card-wrapper ">
+          <!-- <hr> -->
+          <div class="container-card-wrapper-image " [ngClass]="setClassFixed">
+            <div class="wrapper-question" [ngStyle]="{ 'background-color': staticDataToShowFix[0].color }">
+              <div class="text-card">{{ staticDataToShowFix[0].attributes.text }}</div>
+            </div>
+            <!-- <div class="wrapper-question-fake"></div> -->
+
+            <div class="special-button ">
+              <img
+                class=""
+                hidefocus="true"
+                class="img-fluid "
+                src="{{ staticDataToShowFix[0].imgUrl }}"
+                alt="{{ staticDataToShowFix[0].imgUrl }}"
+                width="100"
+                height="80"
+                [attr.usemap]="'#ask' + staticDataToShowFix[0].id"
+              />
+
+              <map name="ask{{ staticDataToShowFix[0].id }}">
+                <area
+                  shape="circle"
+                  coords="73,47,22"
+                  alt=""
+                  (click)="
+                    chooseFix(
+                      'S',
+                      staticDataToShowFix[0].answerId,
+                      staticDataToShowFix[0].id,
+                      staticDataToShowFix[0].status
+                    )
+                  "
+                />
+                <area
+                  shape="circle"
+                  coords="49,72,22"
+                  alt=""
+                  (click)="
+                    chooseFix(
+                      'N',
+                      staticDataToShowFix[0].answerId,
+                      staticDataToShowFix[0].id,
+                      staticDataToShowFix[0].status
+                    )
+                  "
+                />
+                <area
+                  shape="circle"
+                  coords="24,48,22"
+                  alt=""
+                  (click)="
+                    chooseFix(
+                      'confirm',
+                      staticDataToShowFix[0].answerId,
+                      staticDataToShowFix[0].id,
+                      staticDataToShowFix[0].status
+                    )
+                  "
+                />
+                <area
+                  shape="circle"
+                  coords="48,23,22"
+                  alt=""
+                  (click)="
+                    chooseFix(
+                      'Y',
+                      staticDataToShowFix[0].answerId,
+                      staticDataToShowFix[0].id,
+                      staticDataToShowFix[0].status
+                    )
+                  "
+                />
+              </map>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

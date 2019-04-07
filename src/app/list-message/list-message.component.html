@@ -1,0 +1,209 @@
+<div class="main-wrapper">
+  <div class="container-oposite-wrapper">
+
+    <img
+      *ngIf="!staticDataToShowFix[0] && !staticDataToShow"
+      src="assets/images/copper-loader.gif"
+      style="display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100px;"
+    />
+    <!-- [ngClass]="containerScroll" -->
+    <div class="container-opposite">
+      <div *ngFor="let item of staticDataToShow; let i = index"
+           class="container-card-wrapper animated slideInUp delay-1s">
+        <div class="count-wrapper animated slideInUp delay-1s">
+          <span class="count">#{{item.attributes?.currentnumber}}/{{totalElements}}</span>
+        </div>
+        <!--data[""0""].attributes.currentquestionnumber-->
+        <!--Common Answers-->
+        <div *ngIf="item.attributes.ownerid!==currentUser.id" class="container-card-wrapper-image animated slideInUp delay-1s"
+             [ngClass]="setClassTop">
+          <div class="wrapper-question" [ngStyle]="{ 'background-color': item.color }">
+            <div class="text-card">{{ item.attributes.text }}</div>
+          </div>
+          <!-- <div class="wrapper-question-fake"> -->
+          <!--data[2].attributes.totalanswernumber-->
+          <!-- </div> -->
+
+          <div class="special-button">
+            <img
+              class=""
+              hidefocus="true"
+              class="img-fluid "
+              src="{{ item.imgUrl }}"
+              alt="{{ item.imgUrl }}"
+              width="100"
+              height="80"
+              [attr.usemap]="'#ask' + item.answerId"
+            />
+
+            <map name="ask{{ item.answerId }}">
+              <area class="area" shape="poly" coords="39, 38, 70, 13, 73, 17, 73, 55, 67, 61" href="javascript:void(0);"
+                    alt="S" (click)="chooseUp('S', item.answerId, item.status)"/>
+              <area class="area" shape="poly" coords="38, 37, 66, 66, 48, 76, 27, 75, 12, 64" href="javascript:void(0);"
+                    alt="N" (click)="chooseUp('N', item.answerId, item.status)"/>
+              <area class="area" shape="poly" coords="-3, 21, 10, 9, 37, 37, 11, 66, -3, 50" href="javascript:void(0);"
+                    alt="COnf" (click)="chooseUp('confirm', item.answerId, item.status)"/>
+              <area class="area" shape="poly" coords="4, 0, 69, -1, 64, 10, 39, 36, 12, 10" href="javascript:void(0);"
+                    alt="Y" (click)="chooseUp('Y', item.answerId, item.status)"/>
+            </map>
+          </div>
+        </div>
+        <!--End Common Answers-->
+        <!--user Qestions-->
+        <div *ngIf="item.attributes.ownerid===currentUser.id" class="container-card-wrapper-image animated slideInUp delay-1s"
+             [ngClass]="setClassTop">
+          <div class="wrapper-question" [ngStyle]="{ 'background-color': item.color }">
+            <div class="text-card-user-question">{{ item.attributes.text }}</div>
+          </div>
+          <!-- <div class="wrapper-question-fake"> -->
+          <!--data[2].attributes.totalanswernumber-->
+          <!-- </div> -->
+
+          <div class="special-button-user-question">
+            <img
+              hidefocus="true"
+              class="img-fluid special-button-user-question-image"
+              src="{{ item.imgUrl }}"
+              alt="{{ item.imgUrl }}"
+              width="100"
+              height="80"
+              [attr.usemap]="'#ask' + item.answerId"
+            />
+
+            <map name="ask{{ item.answerId }}">
+              <area class="area" shape="poly" coords="39, 38, 70, 13, 73, 17, 73, 55, 67, 61" href="javascript:void(0);"
+                    alt="S" (click)="chooseUp('S', item.answerId, item.status)"/>
+              <area class="area" shape="poly" coords="38, 37, 66, 66, 48, 76, 27, 75, 12, 64" href="javascript:void(0);"
+                    alt="N" />
+              <area class="area" shape="poly" coords="-3, 21, 10, 9, 37, 37, 11, 66, -3, 50" href="javascript:void(0);"
+                    alt="COnf" (click)="chooseUp('confirm', item.answerId, item.status)"/>
+              <area class="area" shape="poly" coords="4, 0, 69, -1, 64, 10, 39, 36, 12, 10" href="javascript:void(0);"
+                    alt="Y" (click)="chooseUp('Y', item.answerId, item.status)"/>
+            </map>
+          </div>
+        </div>
+
+        <!--End user Qestions-->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  <!--<div class="fixed-bottom-container" *ngIf="staticDataToShowFix[0]"  [ngStyle]="{'background-color':addText ? '#56baeb' : 'white' }">-->
+
+  <div class="fixed-bottom-container" *ngIf="staticDataToShowFix[0]" [ngClass]="{'white_background':!addText,'grey_background':addText}" >
+    <!--FIRST QUESTIOn-->
+    <div *ngIf="!addText" class="info-question">
+      <div class="count-time-wrapper">
+        <span class="count">#{{staticDataToShowFix[0].attributes?.currentnumber}}/{{totalElements}}</span>
+        <!--<div class="time count">-->
+        <!--<img  class="time_icon" src="../../assets/icons/time1.png" alt="time">-->
+        <!--&lt;!&ndash;<mat-icon>av_timer</mat-icon>&ndash;&gt;-->
+        <!--<span>#21/5</span>-->
+        <!--</div>-->
+
+      </div>
+      <div class="wrapper-fix-bottom" >
+        <div *ngIf="isShow" class=" container-card-wrapper ">
+          <!-- <hr> -->
+          <div class="container-card-wrapper-image " [ngClass]="setClassFixed">
+            <div class="wrapper-question" [ngStyle]="{ 'background-color': staticDataToShowFix[0].color }">
+
+              <div (click)="goToAddText()" class="wrapper-text-click-left"></div>
+              <div class="text-card">{{ staticDataToShowFix[0].attributes.text }}</div>
+            </div>
+            <!-- <div class="wrapper-question-fake">
+
+            </div> -->
+
+            <div class="special-button ">
+              <img
+                class=""
+                hidefocus="true"
+                class="img-fluid "
+                src="{{ staticDataToShowFix[0].imgUrl }}"
+                alt="{{ staticDataToShowFix[0].imgUrl }}"
+                width="100"
+                height="80"
+                [attr.usemap]="'#ask' + staticDataToShowFix[0].id"
+              />
+              <map name="ask{{ staticDataToShowFix[0].id }}">
+                <area
+                  class="area"
+                  shape="poly"
+                  coords="61, 13, 71, 9, 73, 33, 68, 65, 40, 37"
+                  href="javascript:void(0);"
+                  alt="S"
+                  (click)="
+                  chooseFix(
+                    'S',
+                    staticDataToShowFix[0].answerId,
+                    staticDataToShowFix[0].id,
+                    staticDataToShowFix[0].status
+                  )
+                "
+                />
+                <area
+                  class="area"
+
+                  href="javascript:void(0);"
+                  shape="poly"
+                  coords="5, 72, 38, 36, 69, 71, 42, 75, 22, 74"
+                  alt="N"
+                  (click)="
+                  chooseFix(
+                    'N',
+                    staticDataToShowFix[0].answerId,
+                    staticDataToShowFix[0].id,
+                    staticDataToShowFix[0].status
+                  )
+                "
+                />
+                <area
+                  class="area"
+
+                  href="javascript:void(0);"
+                  shape="poly"
+                  coords="0, 17, 1, 5, 36, 36, 5, 62, 0, 50"
+                  alt="confirm"
+                  (click)="
+                  chooseFix(
+                    'confirm',
+                    staticDataToShowFix[0].answerId,
+                    staticDataToShowFix[0].id,
+                    staticDataToShowFix[0].status
+                  )
+                "
+                />
+                <area
+                  class="area"
+
+                  href="javascript:void(0);"
+                  shape="poly"
+                  coords="38, 35, 7, 0, 49, -1, 66, 3, 58, 12"
+                  alt="Y"
+                  (click)="
+                  chooseFix(
+                    'Y',
+                    staticDataToShowFix[0].answerId,
+                    staticDataToShowFix[0].id,
+                    staticDataToShowFix[0].status
+                  )
+                "
+                />
+              </map>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End First Question-->
+    <!--Etart addQuestion-->
+    <app-user-ask *ngIf="addText"  [channelId]="channalId" (emitAddText)="goToQuestions($event)"></app-user-ask>
+
+    <!--End addQuestion-->
+  </div>
+</div>
+<!-- </div> -->

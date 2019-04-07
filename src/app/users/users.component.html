@@ -1,0 +1,72 @@
+<div class="container-oposite-wrapper">
+
+
+  <div class="container-opposite">
+    <ul class="list-group container-groups">
+      <!--<li class=" list-group-item-top-menu d-flex justify-content-between align-items-center">-->
+      <!--&lt;!&ndash; <li class="user-menu"> &ndash;&gt;-->
+      <!--<div class="ml-1">{{ channel?.countusers }} Group Members</div>-->
+
+      <!--<button [disabled]="!isAdmin" (click)=adminAreaTrigger() class="button" mat-icon-button color="primary">-->
+      <!--<mat-icon [ngClass]="{ add: isAdmin, 'add-disabled': !isAdmin }" aria-label="">add</mat-icon>-->
+      <!--{{ edit }}-->
+      <!--</button>-->
+      <!--</li>-->
+      <!--*ngFor="let user of channel?.userslist"-->
+
+      <li
+        *ngFor="let user of channel?.userslist.value.data"
+        class="list-group-item d-flex justify-content-between align-items-center animated slideInUp"
+      >
+        <a class="d-flex" href="javascript:void(0);">
+          <!--<img-->
+            <!--alt="group logo"-->
+            <!--src="/assets/images/05-02.png"-->
+            <!--class="ml-1 border-0  mr-3 list-thumbnail align-self-center xsmall"-->
+          <!--/>-->
+          <img
+               alt="group logo"
+               src="/assets/icons/icon_conversation 1_1.png"
+               class=" border-0 ml-1 mr-3 list-thumbnail align-self-center xsmall"
+          />
+
+        </a>
+        <div class="d-flex flex-grow-1 min-width-zero" [routerLink]="['/main']" routerLinkActive="active">
+          <div
+            class="m-2 pl-0 align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero"
+          >
+            <div class="min-width-zero">
+              <!-- <a href="#"> -->
+              <p class="mb-0 truncate font-weight-semibold">
+                {{ user?.attributes.displayfirstname }} {{ user?.attributes.displaylastname }}
+              </p>
+              <p class="mb-0 truncate">
+                <img class="icon-small-medal" src="/assets/icons/medal.png" alt="arrow-icon"/><span
+                class="text-icons mr-2 mr-1"
+              >{{ user?.attributes.points}}</span
+              >
+                <img class="icon-small-user" src="/assets/icons/time.png" alt="time-icon"/><span
+                class="text-icons-time mr-2 ml-2"
+              >{{  user?.attributes.avaragetime }}</span
+              >
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <span *ngIf="user?.admin" class="admin">admin</span>
+        </div>
+      </li>
+
+
+    </ul>
+    <div *ngIf="channel&&showButton" class="paging-button btn  animated slideInUp">
+      <button  class="animated slideInUp" *ngIf="!loading" (click)="moreUsersPaging()" mat-mini-fab color="grey">
+        <mat-icon aria-label="">keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-spinner *ngIf="loading" [diameter]="40"  class="spinner"></mat-spinner>
+
+    </div>
+
+  </div>
+</div>

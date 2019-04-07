@@ -1,0 +1,63 @@
+<!-- <div class="col-md-9 col-sm-12"> -->
+  <!-- #scrollMe style="overflow:scroll; height: xyz;" -->
+  <div class="main-wrapper">
+    <div class="container-oposite-wrapper">
+      <div class="container-opposite">
+        <div *ngFor="let item of staticDataToShow; let i = index" class="row container-card-wrapper ">
+          <div class="container-card-wrapper-image animated fadeInUp delay-2s">
+
+            <div class="wrapper-question" [ngStyle]="{'background-color':item.color}">
+              <div class="text-card">{{item.text}}</div>
+            </div>
+            <div class="wrapper-question-fake">
+
+            </div>
+
+
+            <div class="special-button">
+              <img class="" hidefocus="true" class="img-fluid " src="{{item.imgUrl}}" alt="{{item.imgUrl}}" width="100" height="80" [attr.usemap]="'#ask' + item.id"
+              />
+              <map name="ask{{item.id}}">
+                <area shape="circle" coords="73,47,22" alt="" (click)="chooseUp('skip',item.id)">
+                <area shape="circle" coords="49,72,22" alt="" (click)="chooseUp('no',item.id)">
+                <area shape="circle" coords="24,48,22" alt="" (click)="chooseUp('confirm',item.id)">
+                <area shape="circle" coords="48,23,22" alt="" (click)="chooseUp('yes',item.id)">
+              </map>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class=" fixed-bottom-container">
+      <hr class="hr_bottom">
+      <div class="">
+        <div *ngIf="isShow" class="row container-card-wrapper ">
+          <!-- <hr> -->
+          <div class="container-card-wrapper-image " [ngClass]="setClassFixed">
+
+            <div class="wrapper-question" [ngStyle]="{'background-color':staticDataToShowFix[0].color}">
+              <div class="text-card">{{staticDataToShowFix[0].text}}</div>
+            </div>
+            <div class="wrapper-question-fake">
+
+            </div>
+
+
+            <div class="special-button ">
+              <img class="" hidefocus="true" class="img-fluid " src="{{staticDataToShowFix[0].imgUrl}}" alt="{{staticDataToShowFix[0].imgUrl}}"
+                width="100" height="80" [attr.usemap]="'#ask' + staticDataToShowFix[0].id" />
+              <map name="ask{{staticDataToShowFix[0].id}}">
+                <area shape="circle" coords="73,47,22" alt="" (click)="chooseFix('skip',staticDataToShowFix[0].id)">
+                <area shape="circle" coords="49,72,22" alt="" (click)="chooseFix('no',staticDataToShowFix[0].id)">
+                <area shape="circle" coords="24,48,22" alt="" (click)="chooseFix('confirm',staticDataToShowFix[0].id)">
+                <area shape="circle" coords="48,23,22" alt="" (click)="chooseFix('yes',staticDataToShowFix[0].id)">
+              </map>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->

@@ -1,0 +1,152 @@
+<div *ngIf="addText" class="info-add-text">
+  <div class="count-time-wrapper">
+    <!--<span class="count">#{{staticDataToShowFix[0].attributes?.currentnumber}}/{{totalElements}}</span>-->
+    <span class="count">{{currentTextAreaLength}}/140</span>
+
+    <!--<div class="time count">-->
+    <!--<img  class="time_icon" src="../../assets/icons/time1.png" alt="time">-->
+    <!--&lt;!&ndash;<mat-icon>av_timer</mat-icon>&ndash;&gt;-->
+    <!--<span>#21/5</span>-->
+    <!--</div>-->
+
+  </div>
+  <div class="wrapper-fix-bottom">
+    <div class=" container-card-wrapper ">
+      <!-- <hr> -->
+      <!--(click)="goToQuestions()"-->
+      <div class="container-card-wrapper-image " [ngClass]="setClassAddText">
+        <div class="wrapper-question" [ngStyle]="{ 'background-color': questionsAddText[0]?.color }">
+          <!--<div  class="wrapper-text-click-right"></div>-->
+          <form dir="rtl" [formGroup]="userText" (ngSubmit)="onSubmit()">
+            <div class="form-group text-input-wrapper">
+                  <textarea dir="rtl"
+                            maxlength="140"
+                            (keyup)="onKey($event)"
+                            type="text"
+                            formControlName="Text"
+                            class="form-control"
+                            placeholder="Write your claim here & confirm (press the green rhombus), or for mediators write a claim for the parties and skip (press yellow rhombus)"
+                            autocomplete="text"
+                            row="4"
+                  ></textarea>
+              <!--<textarea dir="rtl"-->
+                        <!--maxlength="140"-->
+                        <!--(keyup)="onKey($event)"-->
+                        <!--type="text"-->
+                        <!--formControlName="Text"-->
+                        <!--class="form-control"-->
+                        <!--[ngClass]="{ 'is-invalid':f.Text.touched && f.Text.errors }"-->
+                        <!--placeholder="Write your claim here & confirm (press the green rhombus), or for mediators write a claim for the parties and skip (press yellow rhombus)"-->
+                        <!--autocomplete="text"-->
+                        <!--row="4"-->
+              <!--&gt;</textarea>-->
+              <!--<div *ngIf="f.Text.touched && f.Text.errors" class="invalid-feedback">-->
+                <!--<div *ngIf="f.Text.errors.minlength">min 1 character</div>-->
+                <!--<div *ngIf="f.Text.errors.maxlength">max 140 characters</div>-->
+              <!--</div>-->
+            </div>
+            <!--<div class="text-card-add-text">{{ staticDataToShowFix[0].attributes.text }}</div>-->
+          </form>
+
+        </div>
+        <!-- <div class="wrapper-question-fake">
+
+        </div> -->
+        <div class="loader-user-comp">
+
+          <mat-spinner *ngIf="loading" [diameter]="40" [ngClass]="{'mat-spinner-green':green,'mat-spinner-yellow':yellow}" class="spinner mat-spinner-color"></mat-spinner>
+        </div>
+        <div *ngIf="!loading" class="special-button-add-text ">
+          <img
+            class=""
+            hidefocus="true"
+            class="img-fluid "
+            src="{{ questionsAddText[0]?.imgUrl }}"
+            alt="{{ questionsAddText[0]?.imgUrl }}"
+            width="100"
+            height="80"
+            [attr.usemap]="'#ask' + questionsAddText[0]?.id"
+          />
+          <map name="ask{{ questionsAddText[0]?.id }}">
+            <area
+              href="javascript:void(0);"
+              class="area"
+              shape="poly"
+              coords="61, 13, 71, 9, 73, 33, 68, 65, 40, 37"
+              alt="S"
+              (click)="
+                  chooseAddText(
+                    'S',
+                    questionsAddText[0]?.answerId,
+                    questionsAddText[0]?.id,
+                    questionsAddText[0]?.status
+                  )
+                "
+            />
+
+            <area
+              class="area"
+
+              href="javascript:void(0);"
+              shape="poly"
+              coords="5, 72, 38, 36, 69, 71, 42, 75, 22, 74"
+              alt="N"
+
+            />
+<!--            <area-->
+<!--              class="area"-->
+
+<!--              href="javascript:void(0);"-->
+<!--              shape="poly"-->
+<!--              coords="5, 72, 38, 36, 69, 71, 42, 75, 22, 74"-->
+<!--              alt="N"-->
+<!--              (click)="-->
+<!--                 goToQuestions()-->
+<!--                "-->
+<!--              (click)="-->
+<!--                  chooseAddText(-->
+<!--                    'N',-->
+<!--                    questionsAddText[0]?.answerId,-->
+<!--                    questionsAddText[0]?.id,-->
+<!--                    questionsAddText[0]?.status-->
+<!--                  )-->
+<!--                "-->
+<!--            />-->
+            <area
+              class="area"
+
+              href="javascript:void(0);"
+              shape="poly"
+              coords="0, 17, 1, 5, 36, 36, 5, 62, 0, 50"
+              alt="confirm"
+              (click)="
+                  chooseAddText(
+                    'confirm',
+                    questionsAddText[0]?.answerId,
+                    questionsAddText[0]?.id,
+                    questionsAddText[0]?.status
+                  )
+                "
+            />
+            <area
+              class="area"
+
+              href="javascript:void(0);"
+              shape="poly"
+              coords="38, 35, 7, 0, 49, -1, 66, 3, 58, 12"
+              alt="Y"
+              (click)="
+                  chooseAddText(
+                    'Y',
+                    questionsAddText[0]?.answerId,
+                    questionsAddText[0]?.id,
+                    questionsAddText[0]?.status
+                  )
+                "
+            />
+          </map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,114 @@
+<div class="wrapper-contact">
+    <div class="jumbotron jumbotron-sm">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                    <h1 dir="rtl" class="h1 sign">
+                      Contact us
+                        <!-- <small>Feel free to contact us</small> -->
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="well well-sm">
+                    <form  [formGroup]="contact" (ngSubmit)="onSubmit()" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <!-- <label for="name">
+                                        Name</label> -->
+                                    <input type="text" formControlName="Name" class="form-control" id="name"
+                                        placeholder="Full name" [ngClass]="{ 'is-invalid': submitted && f.Name.errors }" />
+                                    <div *ngIf="submitted && f.Name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Name.errors.required">field is nessesary</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- <label for="email">
+                                        Email Address</label> -->
+
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                    </span>
+                                    <input formControlName="Email" type="text" class="form-control" id="email"
+                                        placeholder="E-mail" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }"
+                                        autocomplete="current-email" />
+                                    <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.Email.errors.required">field is nessesary</div>
+                                        <div *ngIf="f.Email.errors.email">כתובת הדוא"ל שהוזנה אינה תקינה.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="email">
+                                        Email Address</label> -->
+                                    <!-- <div class="input-group"> -->
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                                    </span>
+                                    <input formControlName="Phone" type="text" class="form-control" id="phone"
+                                        placeholder="Cellphone number (9 digits at least)" />
+                                    <div *ngIf="submitted && f.Phone.errors" class="error_special">
+                                        <div *ngIf="f.Phone.errors.required">שדה חובה</div>
+                                        <div *ngIf="f.Phone.errors.minlength">מספר הטלפון חייב להכיל 9 ספרות לפחות</div>
+                                    </div>
+                                    <!-- </div> -->
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <!-- <label for="name">
+                                        Message</label> -->
+                                    <textarea formControlName="Message" name="message" id="message" class="form-control"
+                                        rows="9" cols="25" placeholder="Content"></textarea>
+                                    <div *ngIf="submitted && f.Message.errors" class="error_special">
+                                        <div *ngIf="f.Message.errors.required">שדה חובה</div>
+                                        <!-- <div *ngIf="f.Email.errors.email">כתובת הדוא"ל שהוזנה אינה תקינה.</div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" [disabled]="loading" class="btn btn-primary pull-right" id="btnContactUs">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <form >
+                    <legend ><span class="glyphicon glyphicon-globe"></span>Address:</legend>
+                    <address>
+                        <strong>Direct United - Organization Company LTD</strong><br>
+                        <span>
+                           Yehuda Halevi 75 Tel-Aviv 6579606
+                        </span> <br>
+                       <br>
+                        <span title="Phone">
+                            Phone</span>
+                            03-7953319
+                    </address>
+                    <address>
+                        <!-- <strong>Full Name</strong><br> -->
+                        <!-- <a href="mailto:#">first.last@example.com</a> -->
+                    </address>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
+
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Email</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            was sent succesfully.
+        </div>
+    </ng-template>
+</div>
