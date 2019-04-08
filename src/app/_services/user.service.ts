@@ -2,10 +2,11 @@
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject, of} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {catchError, tap, first} from 'rxjs/operators';
+import {catchError, tap, first, map} from 'rxjs/operators';
 // import { AlertService,AuthenticationService } from '../_services';
-import {User} from '../_models';
+import {Channel, User} from '../_models';
 import {DataService} from './data.service';
+import {RootObject, Meta } from '../_models/channels';
 
 @Injectable()
 export class UserService {
@@ -558,6 +559,24 @@ export class UserService {
       catchError(this.handleError<any>('getAllChannels'))
     );
   }
+
+  // getAllChannelTest(size = 120, page = 1) {
+  //   this.userToken = localStorage.getItem('userToken');
+  //   console.log('userToken', this.userToken);
+  //   const header = {
+  //     headers: {
+  //       Authorization: `bearer ${this.userToken}`,
+  //       'Content-Type': 'application/json',
+  //       'Access-Control-Allow-Origin': '*'
+  //     }
+  //   };
+  //   return this.http.get<RootObject>(`${environment.apiUrlCall}channels?offset=${page}&limit=${size}`, header).pipe(
+  //     map((res:Response) => <RootObject>res.json().data),
+  //     tap(channels => console.log('test_channel', channels)),
+  //
+  //     catchError(this.handleError<any>('getAllChannels'))
+  //   );
+  // }
 
   getAllAnswers(size = 300, page = 1, channalId: string) {
     this.userToken = localStorage.getItem('userToken');

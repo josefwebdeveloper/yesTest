@@ -16,8 +16,6 @@ import { ErrorInterceptor } from './_helpers';
 import { AuthGuard, SignUpGuard } from './_guards';
 import { ListMessageComponent } from './list-message/list-message.component';
 import { ListTestComponent } from './list-test/list-test.component';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutComponent } from './about/about.component';
@@ -25,7 +23,6 @@ import { TermsComponent } from './terms/terms.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { YesAlertDirective } from './_directives/yes-alert.directive';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-// import { SweetAlertService } from 'angular-sweetalert-service';
 
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatCardModule } from '@angular/material/card';
@@ -33,16 +30,15 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MainStartComponent } from './main-start/main-start.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { SignupPhoneComponent } from './signup-phone/signup-phone.component';
 import { InvitationComponent } from './invitation/invitation.component';
-import { LoginPhoneComponent } from './login-phone/login-phone.component';
 import { MainChannelComponent } from './main-channel/main-channel.component';
 import { MatIconModule } from '@angular/material/icon';
 import { TestComponent } from './test/test.component';
-import { DataStatisticComponent } from './data-statistic/data-statistic.component';
 import { UsersComponent } from './users/users.component';
 import { UserAskComponent } from './list-message/user-ask/user-ask.component';
 import {MatTooltipModule} from '@angular/material';
+import {AuthModule} from './auth/auth.module';
+import {DataStatisticModule} from './data-statistic/data-statistic.module';
 
 @NgModule({
   declarations: [
@@ -50,21 +46,15 @@ import {MatTooltipModule} from '@angular/material';
     AppComponent,
     ListMessageComponent,
     ListTestComponent,
-    SignupComponent,
-    LoginComponent,
-    SignupComponent,
     NavbarComponent,
     ContactUsComponent,
     AboutComponent,
     TermsComponent,
     YesAlertDirective,
     MainStartComponent,
-    SignupPhoneComponent,
     InvitationComponent,
-    LoginPhoneComponent,
     MainChannelComponent,
     TestComponent,
-    DataStatisticComponent,
     UsersComponent,
     UserAskComponent
   ],
@@ -83,7 +73,8 @@ import {MatTooltipModule} from '@angular/material';
     MatDialogModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    AuthModule
   ],
   exports: [],
   providers: [
@@ -93,7 +84,6 @@ import {MatTooltipModule} from '@angular/material';
     AlertService,
     AuthenticationService,
     ApiService,
-    // SweetAlertService,
     DataService,
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

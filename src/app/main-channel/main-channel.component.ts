@@ -37,9 +37,8 @@ export class MainChannelComponent implements OnInit, OnDestroy {
     private router: Router
   ) {
     this.subscriptionAdminArea = this.dataService.getAdminArea().subscribe(adminArea => {
-      //
       this.adminArea = adminArea;
-      console.log('@@2',this.subscriptionAdminArea);
+      console.log('@@2', this.subscriptionAdminArea);
       console.log('adminArea', this.adminArea);
     });
   }
@@ -53,14 +52,7 @@ export class MainChannelComponent implements OnInit, OnDestroy {
   formArea = false;
 
   ngOnInit() {
-
-    // this.dataService.sendAdminArea(this.adminArea);
-    // setTimeout(() => {
-    //   this.adminArea = false;
-
-    // }, 1500);
     this.addUserForm = this.formBuilder.group({
-      // Phone: ['', [Validators.required, Validators.pattern('^0?(5[0234])(-)?d{7}$')]]
       Phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]
     });
     this.activatedRoute.params.subscribe(routeParams => {
