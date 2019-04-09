@@ -17,22 +17,22 @@ import {UsersComponent} from './users/users.component';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/main'},
-  {path: 'main/:id', component: ListMessageComponent, canActivate: [AuthGuard]},
+  {path: 'main/:id', component: ListMessageComponent},
 
-  {path: 'invitation/:id', component: InvitationComponent, canActivate: [AuthGuard]},
+  {path: 'invitation/:id', component: InvitationComponent},
 
-  {path: 'contactus', component: ContactUsComponent, canActivate: [AuthGuard]},
+  {path: 'contactus', component: ContactUsComponent},
   {
-    path: 'statistic/:id', loadChildren: './data-statistic/data-statistic.module#DataStatisticModule', canActivate: [AuthGuard]
+    path: 'statistic/:id', loadChildren: './data-statistic/data-statistic.module#DataStatisticModule'
   },
-  {path: 'settings/:id', component: MainChannelComponent, canActivate: [AuthGuard]},
+  {path: 'settings/:id', component: MainChannelComponent},
 
-  {path: 'settings/:id/users', component: UsersComponent, canActivate: [AuthGuard]},
+  {path: 'settings/:id/users', component: UsersComponent},
 
   {path: 'about', component: AboutComponent},
   {path: 'terms', component: TermsComponent},
-  {path: 'main', component: MainStartComponent, canActivate: [AuthGuard]},
-  {path: 'test', component: TestComponent, canActivate: [AuthGuard]},
+  {path: 'main', component: MainStartComponent},
+  {path: 'test', component: TestComponent},
   {
     path: '**',
     redirectTo: '/main'

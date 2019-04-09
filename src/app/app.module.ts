@@ -39,6 +39,12 @@ import { UserAskComponent } from './list-message/user-ask/user-ask.component';
 import {MatTooltipModule} from '@angular/material';
 import {AuthModule} from './auth/auth.module';
 import {DataStatisticModule} from './data-statistic/data-statistic.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './store/app.effects';
 
 @NgModule({
   declarations: [
@@ -74,7 +80,10 @@ import {DataStatisticModule} from './data-statistic/data-statistic.module';
     MatIconModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-    AuthModule
+    AuthModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    // EffectsModule.forRoot([AppEffects])
   ],
   exports: [],
   providers: [

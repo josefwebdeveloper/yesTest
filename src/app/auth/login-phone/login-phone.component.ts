@@ -5,6 +5,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 
 import {AlertService, AuthenticationService, DataService, UserService} from '../../_services';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../store/reducers';
+import {LogInSuccess} from '../../store/auth.actions';
 
 class Subsciption {
 }
@@ -33,7 +36,8 @@ export class LoginPhoneComponent implements OnInit {
     private dataService: DataService,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private store: Store<AppState>
   ) {
 
 
@@ -141,7 +145,7 @@ export class LoginPhoneComponent implements OnInit {
 
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('userToken', JSON.parse(JSON.stringify(user)).token);
-
+          this.store.dispatch(new LogInSuccess(user));
           if (!user.isRegistrationFinish) {
             this.router.navigate(['/register']);
           } else {
